@@ -34,37 +34,35 @@ h1 {
 .filebox label {
   display: inline-block;
   width: 50px;
-  color: #999; 
-  font-size: inherit; 
+  color: rgb(77, 76, 76); 
+  font-size: xx-large; 
   line-height: normal; 
   vertical-align: middle; 
-  background-color: #fdfdfd; 
+  background-color: #f5b17ac4; 
   cursor: pointer; 
-  border: 1px solid #ebebeb; 
-  border-bottom-color: #e2e2e2; 
+  border: 3px solid #f5986d;  
   border-radius: .25em;
 }
 
 .filebox .photo-input {
   display: inline-block; 
-  font-size: inherit; 
-  font-family: inherit; 
+  font-size: xx-large; 
   line-height: normal; 
   vertical-align: middle; 
-  background-color: #f5f5f5; 
-  border: 1px solid #ebebeb; 
-  border-bottom-color: #e2e2e2; 
+  background-color: #fccaa1c4; 
+  border: 3px solid #f5986d; 
   border-radius: .25em; 
   -webkit-appearance: none;
   -moz-appearance: none; 
   appearance: none;
+  color: gray;
 }
 
 .info .name-input {
   width: 250px;
   height: 40px;
   padding: 0 10px;
-  font-size: 20px;
+  font-size: xx-large;
   border: 2px solid rgb(223, 138, 81);
   border-radius: 15px;
   background-color: rgba(240, 171, 186, 0.466);
@@ -93,6 +91,7 @@ h1 {
 
 .info {
   width: auto;
+  background-color: rgba(255, 208, 0, 0.404);
   border: 5px dashed rgba(245, 102, 46, 0.658);
   border-radius: 30px;
   padding-top: 1rem;
