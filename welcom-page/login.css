@@ -1,0 +1,105 @@
+* {
+  font-family: 'Dongle', sans-serif;
+  font-size: 35px;
+  text-align: center;
+}
+
+body {
+  padding: 100px;
+  background-color: rgba(241, 230, 75, 0.555);
+  font-family: 'Dongle', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 90px;
+  color: rgb(226, 125, 43);
+  text-shadow:3px 3px 3px #000
+}
+
+.filebox .hidden-photo {
+  position: absolute; 
+  width: 1px; 
+  height: 1px; 
+  padding: 0; 
+  margin: -1px; 
+  overflow: hidden; 
+  clip:rect(0,0,0,0); 
+  border: 0;
+}
+
+.filebox label {
+  display: inline-block;
+  width: 50px;
+  color: #999; 
+  font-size: inherit; 
+  line-height: normal; 
+  vertical-align: middle; 
+  background-color: #fdfdfd; 
+  cursor: pointer; 
+  border: 1px solid #ebebeb; 
+  border-bottom-color: #e2e2e2; 
+  border-radius: .25em;
+}
+
+.filebox .photo-input {
+  display: inline-block; 
+  font-size: inherit; 
+  font-family: inherit; 
+  line-height: normal; 
+  vertical-align: middle; 
+  background-color: #f5f5f5; 
+  border: 1px solid #ebebeb; 
+  border-bottom-color: #e2e2e2; 
+  border-radius: .25em; 
+  -webkit-appearance: none;
+  -moz-appearance: none; 
+  appearance: none;
+}
+
+.info .name-input {
+  width: 250px;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 20px;
+  border: 2px solid rgb(223, 138, 81);
+  border-radius: 15px;
+  background-color: rgba(240, 171, 186, 0.466);
+  text-align: center;
+}
+
+.info .name-input:focus {
+  outline:none;
+}
+
+.enter-btn {
+  width: 200px;
+  height: 70px;
+  border-radius: 40px;
+  border: 3px solid rgb(206, 102, 90);
+  background-color: rgba(250, 128, 114, 0.623);
+  cursor: pointer;
+}
+
+.enter-btn:hover {
+  background-color: salmon;
+  border: 5px solid rgb(255, 255, 255);
+  color: white;
+  font-size: larger;
+}
+
+.info {
+  width: auto;
+  border: 5px dashed rgba(245, 102, 46, 0.658);
+  border-radius: 30px;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
