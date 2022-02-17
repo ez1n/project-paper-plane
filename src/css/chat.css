@@ -25,7 +25,9 @@ html, body {
 .menu-space {
   background: rgb(157, 253, 170);
   flex:1;
-  /* display: flex; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   padding: 0.5rem;
 }
 
