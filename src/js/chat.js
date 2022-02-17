@@ -1,51 +1,88 @@
 'use strict'
-
-// 서버로 부터 유저 네임 받아오기
-const currentUserName = document.querySelector(".current-user-name");
-const userName = decodeURIComponent(((document.cookie).substring(9)));
-currentUserName.textContent = userName + "님";
-
 const socket = io();
+
+// 서버로부터 유저 이름 받아오기
+const userName = decodeURIComponent(((document.cookie).substring(9))); // 쿠키값 파싱
+
+// DOM 가져오기
 const chattingList = document.querySelector(".chatting-list");
 const msgInput = document.querySelector(".msg-input");
 const sendBtn = document.querySelector(".send-btn");
+const chattingSpace = document.querySelector(".chatting-space");
+const currentUserName = document.querySelector(".current-user-name");
+const currentLoginNum = document.querySelector(".current-login-num");
+
+/**
+ * 상단 메뉴바 설정
+ */
+
+// 현재 접속중인 사람 이름 표시
+ currentUserName.textContent = userName + "님";
+
+
+/**
+* 채팅룸 설정
+*/
+
+// 엔터키 눌러도 메시지가 보내지도록 설정
+msgInput.addEventListener("keypress", (event) => {
+  if (event.keycode === 13) {
+    console.log("엔터")
+    send();
+    msgInput.value = "";
+  }
+})
+
 
 sendBtn.addEventListener("click", () => {
+  send();
+  msgInput.value = "";
+});
+
+
+// 메시지 전송 함수
+const send = function () {
   const param = {
     name: userName,
     photo: "profilePhoto",
     msg: msgInput.value
   }
   socket.emit("chatting", param)
-});
+}
 
 
-socket.on("chatting", (data) => {
-  
-  const { name, msg, photo, time} = data;
-  const item = new LiModel(name, msg, photo, time);
-  item.makeLi()
-});
+// 채팅 인스턴스
+class Chat {
+  constructor(name, msg, photo, time) {
+    this.name = name;
+    this.msg = msg;
+    this.photo = photo;
+    this.time = time;
+  }
 
-function LiModel(name, msg, photo, time) {
-  this.name = name;
-  this.msg = msg;
-  this.photo = photo;
-  this.time = time;
-
-  this.makeLi = () => {
+  // 이거 ㄹㅇ 리펙토링 안되나 너무 꼴보기 싫은데;;
+  addToChatting() {
     const li = document.createElement("li");
-    li.classList.add(userName === this.name ? "sent": "received")
+    li.classList.add(userName === this.name ? "sent": "received");
     const dom = `<li class="sent">
     <span class="profile">
-      <span class="user">${this.name}</span>
-      <!-- <img src="" alt="profile"> : ${this.photo} 사용 -->
+    <span class="user">${this.name}</span>
+    <!-- <img src="" alt="profile"> : ${this.photo} 사용 -->
     </span>
     <span class="msg">${this.msg}</span>
     <span class="time">${this.time}</span>
-  </li>`;
-  li.innerHTML = dom;
-  chattingList.appendChild(li);
+    </li>`;
+    li.innerHTML = dom;
+    chattingList.appendChild(li);
   }
-};
+}
+
+// 서버로 부터 채팅 메시지 받기
+socket.on("chatting", (data) => {
+  const { name, msg, photo, time } = data;
+  new Chat(name, msg, photo, time).addToChatting();
+  chattingSpace.scrollTo(0, chattingSpace.scrollHeight); //채팅 계속 보내지면 아래로 자동 스크롤
+});
+
+
 

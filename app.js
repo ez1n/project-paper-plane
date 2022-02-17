@@ -21,7 +21,7 @@ router.get('/chat', (req, res) => {
   if (typeof(userName) === 'undefined') {
     res.redirect('/');
   }
-  console.log(userName);
+  console.log(`"${userName}" is entered chatting room`);
   res.cookie("userName", userName);
   res.sendFile(__dirname + '/src/chat.html');
 });
