@@ -28,16 +28,22 @@ router.get('/chat', (req, res) => {
 
 
 // router setting
-app.use("/", router)
+app.use("/", router);
 
 /**
  * 소켓 설정
  */
 const io = require("socket.io")(server);
+const moment = require("moment");
+
 io.on("connection", (socket) => {
-  console.log("socket is successfully connected!");
   socket.on("chatting", (data) => {
-    console.log(data)
-    io.emit("chatting", "그래 반가워")
-  })
-})
+    const { name, photo, msg } = data;
+    io.emit("chatting", {
+      name,
+      photo,
+      msg,
+      time: moment(new Date()).format("h:ss A")
+    })
+  });
+});
