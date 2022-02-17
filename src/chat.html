@@ -8,15 +8,19 @@
   <title>채팅룸</title>
   <link rel="stylesheet" href="css/chat.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="container">
     <div class="menu-space">
-      <span class="current-user-name">배성흥님</span>
-      <input class="change-name-btn" type="button" value="이름바꾸기">
+      <div class="current-user-name"></div>
+      <div>
+        <form action="/" method="get">
+          <input class="change-name-btn" type="submit" value="이름바꾸기">
+        </form>
+      </div>
       <div class="current-login">현재접속자 : <span class="current-login-num">0</span></div>
     </div>
     <div class="chatting-space">
@@ -46,7 +50,9 @@
       </span>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" integrity="sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"
+    integrity="sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/js/chat.js"></script>
 </body>
 
