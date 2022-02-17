@@ -10,7 +10,7 @@
 
 ## node-modules install
 ```
-npm install express socket.io moment
+npm install express socket.io moment cookie-parser
 ```
 
 nodemon 실행은 cmd에서 할 것
