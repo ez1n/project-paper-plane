@@ -44,9 +44,11 @@ io.on("connection", (socket) => {
     console.log("입장");
     const { name } = data;
     socket.name = data.name;
+    userList.push(socket.name);
     io.emit("join", {
-      name: name,
-      //usernum: 
+      name,
+      userList: userList,
+      userNum: userList.length
     });
   });
 
@@ -62,9 +64,12 @@ io.on("connection", (socket) => {
 
    socket.on("disconnect", () => {
      console.log(socket.name + "퇴장");
+     userList.splice(userList.indexOf(socket.name,1));
      socket.broadcast.emit("exit", {
-       type: disconnect,
-       name: socket.name
+       type: "disconnect",
+       name: socket.name,
+       userList: userList,
+       userNum: userList.length
       });
    });
 });

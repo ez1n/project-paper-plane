@@ -12,7 +12,6 @@ const chattingSpace = document.querySelector(".chatting-space");
 const currentUserName = document.querySelector(".current-user-name");
 const currentLoginNum = document.querySelector(".current-login-num");
 socket.emit("join", { name: userName });
-const userList = [];
 msgInput.focus(); // 입장시 커서 놓기
 
 /**
@@ -73,8 +72,6 @@ class Chat {
     const dom = `${this.name} 님이 입장했습니다.`;
     li.innerHTML = dom;
     chattingList.appendChild(li);
-    userList.push(this.name);
-    currentLoginNum.textContent = userList.length;
   };
 
 
@@ -98,9 +95,9 @@ class Chat {
 
 // 입장시
 socket.on("join", (data) => {
-  console.log("입장");
-  const { name, msg, photo, time } = data;
+  console.log(data.userList);
   new Chat(name).addJoinMsg();
+  currentLoginNum.textContent = data.userNum;
   chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
 });
 
@@ -115,14 +112,13 @@ socket.on("chatting", (data) => {
 
 // 퇴장시
 socket.on("exit", (data) => {
-  console.log(data)
+  console.log(data.userList);
    const li = document.createElement("li");
     li.classList.add("exit-msg");
     const dom = `${data.name} 님이 퇴장했습니다.`;
     li.innerHTML = dom;
     chattingList.appendChild(li);
-    userList.splice(userList.indexOf(data.name,1));
-    currentLoginNum.textContent = userList.length;
+    currentLoginNum.textContent = data.userNum;
     chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
 });
 
