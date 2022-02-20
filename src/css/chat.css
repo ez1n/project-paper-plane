@@ -43,6 +43,7 @@ html, body {
   background: rgba(147, 245, 155, 0.507);
   flex:12;
   overflow-y:scroll;
+  text-align: center;
 }
 
 .sending-space {
@@ -62,14 +63,18 @@ input[type=button]:hover {
 .change-name-btn {
   background: rgb(10, 189, 135);
   border: none;
-  border-radius: 3px
+  border-radius: 3px;
+}
+
+.change-name-btn:hover {
+  background: rgb(13, 223, 142);
+  cursor: pointer;
 }
 
 .chatting-space li {
   width: 90%;
   padding: 0.3rem;
   display: flex;
-  justify-content: flex-start;
   align-items: flex-end;
   margin-top: 0.5rem;
 }
@@ -98,7 +103,7 @@ input[type=button]:hover {
   margin-bottom: 0 5px;
   flex: 7;
   font-size: 24px;
-
+  text-align: justify;
 }
 
 .time {
@@ -117,6 +122,11 @@ input[type=button]:hover {
 
 .received .msg {
   background: white;
+}
+
+.chatting-space .join-msg {
+  display: inline-block;
+  font-size: 20px;
 }
 
 
@@ -139,6 +149,8 @@ input[type=button]:hover {
   flex:8;
   margin-right: 5px;
   background: rgb(209, 240, 232);
+  padding-left: 10px;
+  outline: none;
 }
 
 .send-btn {

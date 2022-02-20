@@ -36,7 +36,15 @@ app.use("/", router);
 const io = require("socket.io")(server);
 const moment = require("moment");
 
-io.on("connection", (socket) => {
+io.on("connection", (socket) => { 
+  socket.on("join", (data) => {
+    console.log("입장");
+    const { name } = data;
+    io.emit("join", {
+      name
+    });
+  });
+
   socket.on("chatting", (data) => {
     const { name, photo, msg } = data;
     io.emit("chatting", {
@@ -44,6 +52,17 @@ io.on("connection", (socket) => {
       photo,
       msg,
       time: moment(new Date()).format("h:ss A")
-    })
+    });
   });
+
+  /*
+   socket.on("disconnect", () => {
+     console.log("퇴장");
+     const { name } = data;
+     io.emit("disconnect", {
+       name
+     });
+   });
+   */
 });
+

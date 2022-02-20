@@ -11,6 +11,10 @@ const sendBtn = document.querySelector(".send-btn");
 const chattingSpace = document.querySelector(".chatting-space");
 const currentUserName = document.querySelector(".current-user-name");
 const currentLoginNum = document.querySelector(".current-login-num");
+socket.emit("join", {
+  name: userName
+});
+msgInput.focus(); // 입장시 커서 놓기
 
 /**
  * 상단 메뉴바 설정
@@ -19,24 +23,24 @@ const currentLoginNum = document.querySelector(".current-login-num");
 // 현재 접속중인 사람 이름 표시
  currentUserName.textContent = userName + "님";
 
-
 /**
 * 채팅룸 설정
 */
 
+
 // 엔터키 눌러도 메시지가 보내지도록 설정
 msgInput.addEventListener("keypress", (event) => {
-  if (event.keycode === 13) {
+  if (event.keyCode == 13) {
+    if (msgInput.value == '') return;
     console.log("엔터")
     send();
-    msgInput.value = "";
   }
-})
+});
 
 
 sendBtn.addEventListener("click", () => {
+  if (msgInput.value == '') return;
   send();
-  msgInput.value = "";
 });
 
 
@@ -46,9 +50,11 @@ const send = function () {
     name: userName,
     photo: "profilePhoto",
     msg: msgInput.value
-  }
-  socket.emit("chatting", param)
-}
+  };
+  socket.emit("chatting", param);
+  msgInput.value = "";
+  msgInput.focus();
+};
 
 
 // 채팅 인스턴스
@@ -58,7 +64,28 @@ class Chat {
     this.msg = msg;
     this.photo = photo;
     this.time = time;
-  }
+  };
+
+
+  // 입장 메시지
+  addJoinMsg() {
+    const li = document.createElement("li");
+    li.classList.add("join-msg");
+    const dom = `${this.name} 님이 입장했습니다.`;
+    li.innerHTML = dom;
+    chattingList.appendChild(li);
+  };
+
+
+  // 퇴장 메시지
+  addExitMsg() {
+    const li = document.createElement("li");
+    li.classList.add("exit-msg");
+    const dom = `${this.name} 님이 퇴장했습니다.`;
+    li.innerHTML = dom;
+    chattingList.appendChild(li);
+  };
+
 
   // 이거 ㄹㅇ 리펙토링 안되나 너무 꼴보기 싫은데;;
   addToChatting() {
@@ -74,8 +101,18 @@ class Chat {
     </li>`;
     li.innerHTML = dom;
     chattingList.appendChild(li);
-  }
-}
+  };
+};
+
+
+// 입장시
+socket.on("join", (data) => {
+  console.log("입장");
+  const { name, msg, photo, time } = data;
+  new Chat(name).addJoinMsg();
+  chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
+});
+
 
 // 서버로 부터 채팅 메시지 받기
 socket.on("chatting", (data) => {
@@ -83,6 +120,19 @@ socket.on("chatting", (data) => {
   new Chat(name, msg, photo, time).addToChatting();
   chattingSpace.scrollTo(0, chattingSpace.scrollHeight); //채팅 계속 보내지면 아래로 자동 스크롤
 });
+
+
+// 퇴장시
+/*
+socket.on("disconnect", (data) => {
+  console.log("퇴장");
+  const { name, msg, photo, time } = data;
+  new Chat(name).addExitMsg();
+  chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
+});
+*/
+
+
 
 
 
