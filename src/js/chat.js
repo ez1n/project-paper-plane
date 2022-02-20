@@ -94,6 +94,7 @@ class Chat {
   };
 };
 
+// test
 
 // 입장시
 socket.on("join", (data) => {
