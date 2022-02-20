@@ -19,7 +19,7 @@ msgInput.focus(); // 입장시 커서 놓기
  */
 
 // 현재 접속중인 사람 이름 표시
- currentUserName.textContent = userName + " 님";
+currentUserName.textContent = userName + " 님";
 
 /**
 * 채팅룸 설정
@@ -57,19 +57,21 @@ const send = function () {
 
 // 채팅 인스턴스
 class Chat {
-  constructor(name, msg, photo, time) {
+  constructor(name, msg, photo, time, userList, userNum) {
     this.name = name;
     this.msg = msg;
     this.photo = photo;
     this.time = time;
+    this.userList = userList;
+    this.userNum = userNum;
   };
 
 
-  // 입장 메시지
-  addJoinMsg() {
+  // 출입 메시지
+  addEntranceMsg(entrance) {
     const li = document.createElement("li");
-    li.classList.add("join-msg");
-    const dom = `${this.name} 님이 입장했습니다.`;
+    li.classList.add("entrance-msg");
+    const dom = `${this.name} 님이 ${entrance}했습니다.`;
     li.innerHTML = dom;
     chattingList.appendChild(li);
   };
@@ -78,7 +80,7 @@ class Chat {
   // 이거 ㄹㅇ 리펙토링 안되나 너무 꼴보기 싫은데;;
   addToChatting() {
     const li = document.createElement("li");
-    li.classList.add(userName === this.name ? "sent": "received");
+    li.classList.add(userName === this.name ? "sent" : "received");
     const dom = `<li class="sent">
     <span class="profile">
     <span class="user">${this.name}</span>
@@ -95,9 +97,9 @@ class Chat {
 
 // 입장시
 socket.on("join", (data) => {
-  console.log(data.userList);
-  new Chat(name).addJoinMsg();
-  currentLoginNum.textContent = data.userNum;
+  const { name, userList, userNum } = data;
+  new Chat(name, userNum).addEntranceMsg("입장");
+  currentLoginNum.textContent = userNum;
   chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
 });
 
@@ -112,14 +114,10 @@ socket.on("chatting", (data) => {
 
 // 퇴장시
 socket.on("exit", (data) => {
-  console.log(data.userList);
-   const li = document.createElement("li");
-    li.classList.add("exit-msg");
-    const dom = `${data.name} 님이 퇴장했습니다.`;
-    li.innerHTML = dom;
-    chattingList.appendChild(li);
-    currentLoginNum.textContent = data.userNum;
-    chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
+  const { name, userList, userNum } = data;
+  new Chat(name, userNum).addEntranceMsg("퇴장");
+  currentLoginNum.textContent = userNum;
+  chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
 });
 
 

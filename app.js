@@ -63,8 +63,8 @@ io.on("connection", (socket) => {
   });
 
    socket.on("disconnect", () => {
-     console.log(socket.name + "퇴장");
-     userList.splice(userList.indexOf(socket.name,1));
+    console.log(socket.name + "퇴장");
+    userList.splice(userList.indexOf(socket.name),1);
      socket.broadcast.emit("exit", {
        type: "disconnect",
        name: socket.name,

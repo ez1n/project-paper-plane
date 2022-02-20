@@ -129,12 +129,7 @@ input[type=button]:hover {
   background: white;
 }
 
-.chatting-space .join-msg {
-  display: inline-block;
-  font-size: 20px;
-}
-
-.chatting-space .exit-msg {
+.chatting-space .entrance-msg {
   display: inline-block;
   font-size: 20px;
 }
