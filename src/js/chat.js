@@ -125,3 +125,6 @@ socket.on("exit", (data) => {
     currentLoginNum.textContent = userList.length;
     chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
 });
+
+
+
