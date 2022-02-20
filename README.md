@@ -1,3 +1,14 @@
+# 📨종이비행기✈️
+
+소박한 온라인 채팅 서비스
+
+
+
+```
+npm i express socket.io moment cookie-parser
+```
+
+
 ## coding convention
 
 - HTML, JS 문자열 표시는 모두 큰 따옴표 (")
@@ -8,9 +19,4 @@
 - JS : 카멜케이스
 
 
-## node-modules install
-```
-npm install express socket.io moment cookie-parser
-```
 
-nodemon 실행은 cmd에서 할 것
