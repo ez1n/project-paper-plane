@@ -11,9 +11,8 @@ const sendBtn = document.querySelector(".send-btn");
 const chattingSpace = document.querySelector(".chatting-space");
 const currentUserName = document.querySelector(".current-user-name");
 const currentLoginNum = document.querySelector(".current-login-num");
-socket.emit("join", {
-  name: userName
-});
+socket.emit("join", { name: userName });
+const userList = [];
 msgInput.focus(); // 입장시 커서 놓기
 
 /**
@@ -21,7 +20,7 @@ msgInput.focus(); // 입장시 커서 놓기
  */
 
 // 현재 접속중인 사람 이름 표시
- currentUserName.textContent = userName + "님";
+ currentUserName.textContent = userName + " 님";
 
 /**
 * 채팅룸 설정
@@ -74,6 +73,8 @@ class Chat {
     const dom = `${this.name} 님이 입장했습니다.`;
     li.innerHTML = dom;
     chattingList.appendChild(li);
+    userList.push(this.name);
+    currentLoginNum.textContent = userList.length;
   };
 
 
@@ -120,5 +121,7 @@ socket.on("exit", (data) => {
     const dom = `${data.name} 님이 퇴장했습니다.`;
     li.innerHTML = dom;
     chattingList.appendChild(li);
+    userList.splice(userList.indexOf(data.name,1));
+    currentLoginNum.textContent = userList.length;
     chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
 });

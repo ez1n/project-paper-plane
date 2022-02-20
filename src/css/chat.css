@@ -31,8 +31,13 @@ html, body {
   padding: 0.5rem;
 }
 
+.current-user-name {
+  margin-left: 20px;
+}
+
 .current-login {
   float:right;
+  margin-right: 20px;
 }
 
 /**
