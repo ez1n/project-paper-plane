@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 server.listen(PORT, () => console.log(`server is running on port:${PORT}`));
 app.use(cookieParser());
 
+
 /**
  * 라우팅 설정
  */
@@ -35,11 +36,13 @@ app.use("/", router);
  */
 const io = require("socket.io")(server);
 const moment = require("moment");
+const { disconnect } = require("process");
 
-io.on("connection", (socket) => { 
+io.on("connection", (socket) => {
   socket.on("join", (data) => {
     console.log("입장");
     const { name } = data;
+    socket.name = data.name;
     io.emit("join", {
       name
     });
@@ -55,14 +58,12 @@ io.on("connection", (socket) => {
     });
   });
 
-  /*
    socket.on("disconnect", () => {
-     console.log("퇴장");
-     const { name } = data;
-     io.emit("disconnect", {
-       name
-     });
+     console.log(socket.name + "퇴장");
+     socket.broadcast.emit("exit", {
+       type: disconnect,
+       name: socket.name
+      });
    });
-   */
 });
 

@@ -77,16 +77,6 @@ class Chat {
   };
 
 
-  // 퇴장 메시지
-  addExitMsg() {
-    const li = document.createElement("li");
-    li.classList.add("exit-msg");
-    const dom = `${this.name} 님이 퇴장했습니다.`;
-    li.innerHTML = dom;
-    chattingList.appendChild(li);
-  };
-
-
   // 이거 ㄹㅇ 리펙토링 안되나 너무 꼴보기 싫은데;;
   addToChatting() {
     const li = document.createElement("li");
@@ -123,16 +113,12 @@ socket.on("chatting", (data) => {
 
 
 // 퇴장시
-/*
-socket.on("disconnect", (data) => {
-  console.log("퇴장");
-  const { name, msg, photo, time } = data;
-  new Chat(name).addExitMsg();
-  chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
+socket.on("exit", (data) => {
+  console.log(data)
+   const li = document.createElement("li");
+    li.classList.add("exit-msg");
+    const dom = `${data.name} 님이 퇴장했습니다.`;
+    li.innerHTML = dom;
+    chattingList.appendChild(li);
+    chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
 });
-*/
-
-
-
-
-
