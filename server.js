@@ -22,7 +22,6 @@ router.get('/chat', (req, res) => {
   if (typeof(userName) === 'undefined') {
     res.redirect('/');
   }
-  console.log(`"${userName}" is entered chatting room`);
   res.cookie("userName", userName);
   res.sendFile(__dirname + '/src/chat.html');
 });
@@ -36,16 +35,12 @@ app.use("/", router);
  */
 const io = require("socket.io")(server);
 const moment = require("moment");
-const { disconnect } = require("process");
 
 io.on("connection", (socket) => {
   socket.on("join", (data) => {
-    console.log("입장");
-    const { name } = data;
-    socket.name = data.name;
-    io.emit("join", {
-      name
-    });
+    socket.name = data.name; // 소켓에 유저 이름 저장
+    console.log(`${data.name} is entered chatting`);
+    io.emit("join", {name:data.name});
   });
 
   socket.on("chatting", (data) => {
@@ -58,12 +53,9 @@ io.on("connection", (socket) => {
     });
   });
 
-   socket.on("disconnect", () => {
-     console.log(socket.name + "퇴장");
-     socket.broadcast.emit("exit", {
-       type: disconnect,
-       name: socket.name
-      });
-   });
+  socket.on("disconnect", () => {
+    console.log(`${socket.name} is exited chatting`);
+    io.emit("exit", {name:socket.name})
+  });
 });
 
