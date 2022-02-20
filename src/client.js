@@ -11,6 +11,8 @@ const sendBtn = document.querySelector(".send-btn");
 const chattingSpace = document.querySelector(".chatting-space");
 const currentUserName = document.querySelector(".current-user-name");
 const currentLoginNum = document.querySelector(".current-login-num");
+const currentUserList = document.querySelector(".current-user-list");
+const userList = document.querySelector(".user-list");
 socket.emit("join", {
   name: userName
 });
@@ -23,6 +25,24 @@ msgInput.focus(); // 입장시 커서 놓기
 // 현재 접속중인 사람 이름 표시
 currentUserName.textContent = userName + "님";
 
+
+// 접속자 목록 표시
+let currentUsers;
+let userCheck = false;
+currentUserList.addEventListener("click", () => {
+  if (!userCheck) {
+    for (let value of currentUsers) {
+      const p = document.createElement("p");
+      p.classList.add("participants");
+      p.innerHTML = value;
+      userList.appendChild(p);
+    }
+    userCheck = true;
+  } else {
+    userList.innerHTML = "";
+    userCheck = false;
+  }
+});
 
 
 /**
@@ -91,10 +111,12 @@ socket.on("chatting", (data) => {
 socket.on("join", (data) => {
   addEntranceMsg(data.name, "입장");
   currentLoginNum.textContent = data.userNum;
+  currentUsers = data.userList;
 });
 
 // 퇴장시
 socket.on("exit", (data) => {
   addEntranceMsg(data.name, "퇴장");
   currentLoginNum.textContent = data.userNum;
+  currentUsers = data.userList;
 });

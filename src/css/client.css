@@ -40,6 +40,30 @@ html, body {
   margin-right: 20px;
 }
 
+.current-login .current-user-list {
+  background: rgb(10, 189, 135);
+  border: none;
+  border-radius: 3px;
+}
+
+.current-login .current-user-list:hover {
+  background: rgb(13, 223, 142);
+  cursor: pointer;
+}
+
+.user-list {
+  position: absolute;
+  right: 3%;
+  width: max-content;
+  height: max-content;
+}
+
+.user-list .participants {
+  height: 20px;
+  font-size: 25px;
+  text-align: right;
+}
+
 /**
 중단 메인 채팅 부분
 */
@@ -118,7 +142,7 @@ input[type=button]:hover {
 
 .sent {
   flex-direction: row-reverse;
-  float:right;
+  float: right;
 }
 
 .sent .msg {
