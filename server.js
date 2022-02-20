@@ -23,7 +23,7 @@ router.get('/chat', (req, res) => {
     res.redirect('/');
   }
   res.cookie("userName", userName);
-  res.sendFile(__dirname + '/src/chat.html');
+  res.sendFile(__dirname + '/src/client.html');
 });
 
 
@@ -35,12 +35,14 @@ app.use("/", router);
  */
 const io = require("socket.io")(server);
 const moment = require("moment");
+const userList = [];
 
 io.on("connection", (socket) => {
   socket.on("join", (data) => {
     socket.name = data.name; // 소켓에 유저 이름 저장
     console.log(`${data.name} is entered chatting`);
-    io.emit("join", {name:data.name});
+    userList.push(socket.name);
+    io.emit("join", {name:data.name, userList:userList, userNum:userList.length});
   });
 
   socket.on("chatting", (data) => {
@@ -55,7 +57,8 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log(`${socket.name} is exited chatting`);
-    io.emit("exit", {name:socket.name})
+    userList.splice(userList.indexOf(socket.name),1);
+    io.emit("exit", {name:socket.name, userList:userList, userNum:userList.length});
   });
 });
 

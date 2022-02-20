@@ -90,9 +90,11 @@ socket.on("chatting", (data) => {
 // 입장시
 socket.on("join", (data) => {
   addEntranceMsg(data.name, "입장");
+  currentLoginNum.textContent = data.userNum;
 });
 
 // 퇴장시
 socket.on("exit", (data) => {
   addEntranceMsg(data.name, "퇴장");
+  currentLoginNum.textContent = data.userNum;
 });
