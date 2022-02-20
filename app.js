@@ -37,6 +37,7 @@ app.use("/", router);
 const io = require("socket.io")(server);
 const moment = require("moment");
 const { disconnect } = require("process");
+const userList = [];
 
 io.on("connection", (socket) => {
   socket.on("join", (data) => {
@@ -44,7 +45,8 @@ io.on("connection", (socket) => {
     const { name } = data;
     socket.name = data.name;
     io.emit("join", {
-      name
+      name: name,
+      //usernum: 
     });
   });
 
