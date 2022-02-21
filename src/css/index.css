@@ -20,6 +20,7 @@ h1 {
   text-shadow:3px 3px 3px #000
 }
 
+/* 
 .filebox .hidden-photo {
   position: absolute; 
   width: 1px; 
@@ -56,11 +57,28 @@ h1 {
   -moz-appearance: none; 
   appearance: none;
   color: gray;
+} 
+
+.info {
+  width: auto;
+  background-color: rgba(255, 208, 0, 0.404);
+  border: 5px dashed rgba(245, 102, 46, 0.658);
+  border-radius: 30px;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.info .name-input {
+
+*/
+
+.name-input {
   width: 250px;
-  height: 40px;
+  height: 50px;
   padding: 0 10px;
   font-size: xx-large;
   border: 2px solid rgb(223, 138, 81);
@@ -69,7 +87,7 @@ h1 {
   text-align: center;
 }
 
-.info .name-input:focus {
+.name-input:focus {
   outline:none;
 }
 
@@ -87,18 +105,4 @@ h1 {
   border: 5px solid rgb(255, 255, 255);
   color: white;
   font-size: larger;
-}
-
-.info {
-  width: auto;
-  background-color: rgba(255, 208, 0, 0.404);
-  border: 5px dashed rgba(245, 102, 46, 0.658);
-  border-radius: 30px;
-  padding-top: 1rem;
-  margin-bottom: 1rem;
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }

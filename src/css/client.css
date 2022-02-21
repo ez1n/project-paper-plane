@@ -106,6 +106,7 @@ input[type=button]:hover {
   display: flex;
   align-items: flex-end;
   margin-top: 0.5rem;
+  width: max-content;
 }
 
 .profile {

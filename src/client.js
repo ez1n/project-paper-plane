@@ -93,14 +93,13 @@ socket.on("chatting", (data) => {
   const { name, msg, photo, time } = data;
   const li = document.createElement("li");
   li.classList.add(userName === name ? "sent": "received");
-  const dom = `<li class="sent">
+  const dom = `
   <span class="profile">
   <span class="user">${name}</span>
-  <!-- <img src="" alt="profile"> : ${photo} 사용 -->
+  <!-- <img src="" alt="profile"> 프로필사진 -->
   </span>
-  <span class="msg">${msg}</span>
-  <span class="time">${time}</span>
-  </li>`;
+  <div class="msg">${msg}</div>
+  <span class="time">${time}</span>`;
   li.innerHTML = dom;
   chattingList.appendChild(li);
   chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
