@@ -15,7 +15,7 @@
 
 <body>
   <h1>종이비행기</h1>
-  
+  <div class="announce"></div>
   <div class="info">
     <div class="filebox">
       <input class="photo-input" value="프로필사진 선택하기" disabled="disabled">
@@ -23,11 +23,14 @@
       <input type="file" id="ex-filename" class="hidden-photo">
     </div><br>
   </div>
-  <form action="/chat" method="get">
+  <form class="enter-form" action="/chat" method="get">
     <input class="name-input" type="text" name="name" placeholder="이름을 입력해 주세요!" required autocomplete="off">
-    <button type="submit" class="enter-btn" value="name">입장하기</button>
+    <button type="submit" class="enter-btn" value="name" style="display:none">입장하기</button>
   </form>
+  <br>
+  <button class="overlap-check-btn">중복확인</button>
   </form>
+  <script src="index.js"></script>
 </body>
 
 </html>
