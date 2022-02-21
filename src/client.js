@@ -93,12 +93,9 @@ socket.on("chatting", (data) => {
   const { name, msg, photo, time } = data;
   const li = document.createElement("li");
   li.classList.add(userName === name ? "sent": "received");
-  const dom = `
-  <span class="profile">
-  <span class="user">${name}</span>
+  const dom = `<span class="user">${name}</span>
   <!-- <img src="" alt="profile"> 프로필사진 -->
-  </span>
-  <div class="msg">${msg}</div>
+  <span class="msg">${msg}</span>
   <span class="time">${time}</span>`;
   li.innerHTML = dom;
   chattingList.appendChild(li);
