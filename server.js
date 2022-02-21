@@ -17,14 +17,19 @@ app.use(cookieParser());
 const router = express.Router();
 app.use(express.static(path.join(__dirname, "src")));
 
-router.get('/chat', (req, res) => {
+router.get("/chat", (req, res) => {
   const userName = req.query.name;
-  if (typeof(userName) === 'undefined') {
-    res.redirect('/');
+  if (typeof(userName) === "undefined") {
+    res.redirect("/");
+  } else {
+    res.cookie("userName", userName);
+    res.sendFile(__dirname + "/src/client.html");
   }
-  res.cookie("userName", userName);
-  res.sendFile(__dirname + '/src/client.html');
 });
+
+router.get("/users", (req, res) => {
+  res.json(userList);
+})
 
 
 // router setting
