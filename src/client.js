@@ -18,6 +18,7 @@ socket.emit("join", {
 });
 msgInput.focus(); // 입장시 커서 놓기
 
+
 /**
  * 상단 메뉴바 설정
  */
@@ -100,11 +101,13 @@ socket.on("chatting", (data) => {
   li.innerHTML = dom;
   chattingList.appendChild(li);
   chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
+  new Audio("sound/msg.mp3").play();
 });
 
 
 // 입장시
 socket.on("join", (data) => {
+  new Audio("sound/join.mp3").play();
   addEntranceMsg(data.name, "입장");
   currentLoginNum.textContent = data.userNum;
   currentUsers = data.userList;
@@ -112,6 +115,7 @@ socket.on("join", (data) => {
 
 // 퇴장시
 socket.on("exit", (data) => {
+  new Audio("sound/exit.mp3").play();
   addEntranceMsg(data.name, "퇴장");
   currentLoginNum.textContent = data.userNum;
   currentUsers = data.userList;
