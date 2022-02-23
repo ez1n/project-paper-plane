@@ -4,9 +4,20 @@
   text-align: center;
 }
 
+@keyframes cloud-moving { 
+  0% {background-position: 0 top;} 
+  100% {background-position: 500px top;} 
+} 
+
 body {
+  background-image: url("../img/cloud.png"), url("../img/paper-plane.png");
+  background-repeat: repeat-x, no-repeat;
+  background-size: 200px 200px, 100px 100px;
+  background-position: 0px 5%, 0 50%;
+  animation: cloud-moving 40s linear infinite;
+
   padding: 100px;
-  background-color: rgba(241, 230, 75, 0.555);
+  background-color: rgba(52, 164, 255, 0.253);
   font-family: 'Dongle', sans-serif;
   display: flex;
   flex-direction: column;
@@ -15,6 +26,7 @@ body {
 }
 
 h1 {
+  
   font-size: 90px;
   color: rgb(226, 125, 43);
   text-shadow:3px 3px 3px #000
@@ -83,7 +95,7 @@ h1 {
   font-size: xx-large;
   border: 2px solid rgb(223, 138, 81);
   border-radius: 15px;
-  background-color: rgba(240, 171, 186, 0.466);
+  background-color: rgb(247, 179, 140);
   text-align: center;
 }
 
@@ -96,7 +108,7 @@ h1 {
   height: 70px;
   border-radius: 40px;
   border: 3px solid rgb(206, 102, 90);
-  background-color: rgba(250, 128, 114, 0.623);
+  background-color: rgb(250, 128, 114);
   cursor: pointer;
 }
 
