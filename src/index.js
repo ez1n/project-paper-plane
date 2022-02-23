@@ -10,7 +10,7 @@ document.querySelector(".enter-form").addEventListener("keypress", (event) => {
   }
 })
 
-const url = "https://project-paper-plane.herokuapp.com";
+const url = "https://project-paper-plane.herokuapp.com/users";
 
 overlapCheckBtn.addEventListener("click", () => {
   fetch(url).then(res => res.json()).then(res => {
