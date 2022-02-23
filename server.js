@@ -40,9 +40,6 @@ app.use("/", router);
  */
 const io = require("socket.io")(server);
 const moment = require("moment");
-const utcTime = moment.utc().format()
-let localTime = moment.utc(utcTime).toDate();
-localTime = moment(localTime).format("hh:mm A")
 const userList = [];
 
 io.on("connection", (socket) => {
@@ -59,7 +56,7 @@ io.on("connection", (socket) => {
       name,
       photo,
       msg,
-      time: localTime
+      time: moment(new Date()).format("h:ss A")
     });
   });
 
