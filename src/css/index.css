@@ -5,19 +5,30 @@
 }
 
 @keyframes cloud-moving { 
-  0% {background-position: 0 top;} 
-  100% {background-position: 500px top;} 
+  0% {background-position: 0 5%;} 
+  100% {background-position: 1000px 5%;} 
 } 
 
-body {
-  background-image: url("../img/cloud.png"), url("../img/paper-plane.png");
-  background-repeat: repeat-x, no-repeat;
-  background-size: 200px 200px, 100px 100px;
-  background-position: 0px 5%, 0 50%;
+@keyframes plane-moving { 
+  0% {background-position: 0 100%;}
+  100% {background-position: 100% 0%;} 
+} 
+
+html {
+  background-image: url("../img/cloud.png");
+  background-repeat: repeat-x;
+  background-size: 200px 200px;
   animation: cloud-moving 40s linear infinite;
 
-  padding: 100px;
   background-color: rgba(52, 164, 255, 0.253);
+}
+
+body {
+  background-image: url("../img/paper-plane.png");
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+  animation: plane-moving 15s linear infinite;
+  padding: 100px;
   font-family: 'Dongle', sans-serif;
   display: flex;
   flex-direction: column;
@@ -25,11 +36,11 @@ body {
   align-items: center;
 }
 
+
 h1 {
-  
   font-size: 90px;
-  color: rgb(226, 125, 43);
-  text-shadow:3px 3px 3px #000
+  color: rgb(163, 218, 255);
+  text-shadow: -3px 0 rgb(60, 68, 180), 0 3px rgb(60, 68, 180), 3px 0 rgb(60, 68, 180), 0 -3px rgb(60, 68, 180);
 }
 
 /* 
@@ -93,9 +104,9 @@ h1 {
   height: 50px;
   padding: 0 10px;
   font-size: xx-large;
-  border: 2px solid rgb(223, 138, 81);
+  border: 2px solid rgb(115, 122, 221);
   border-radius: 15px;
-  background-color: rgb(247, 179, 140);
+  background-color: rgb(172, 199, 250);
   text-align: center;
 }
 
@@ -107,13 +118,13 @@ h1 {
   width: 200px;
   height: 70px;
   border-radius: 40px;
-  border: 3px solid rgb(206, 102, 90);
-  background-color: rgb(250, 128, 114);
+  border: 3px solid rgb(53, 67, 194);
+  background-color: rgb(114, 162, 250);
   cursor: pointer;
 }
 
 .enter-btn:hover, .overlap-check-btn:hover {
-  background-color: salmon;
+  background-color: rgb(163, 237, 255);
   border: 5px solid rgb(255, 255, 255);
   color: white;
   font-size: larger;
