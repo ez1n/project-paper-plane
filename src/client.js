@@ -54,7 +54,6 @@ currentUserList.addEventListener("click", () => {
 msgInput.addEventListener("keypress", (event) => {
   if (event.keyCode == 13) {
     if (msgInput.value == '') return;
-    console.log("엔터")
     send();
   }
 });
@@ -81,7 +80,14 @@ const send = function () {
 const addEntranceMsg = function (name, entrance) {
   const li = document.createElement("li");
   li.classList.add("entrance-msg");
-  const dom = `${name} 님이 ${entrance}했습니다.`;
+  let dom;
+  if (entrance == "join") {
+    dom = `${name} 님이 종이비행기를 타고 왔어요!
+    매너채팅 부탁드려요 :)`;
+  } else {
+    dom = `${name} 님이 종비비행기를 타고 다른곳으로 날아갔어요. 
+    다음에 또 만날 기회가 있을거에요 :)`;
+  }
   li.innerHTML = dom;
   chattingList.appendChild(li);
   chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
@@ -96,7 +102,7 @@ socket.on("chatting", (data) => {
   li.classList.add(userName === name ? "sent": "received");
   const dom = `<span class="user">${name}</span>
   <!-- <img src="" alt="profile"> 프로필사진 -->
-  <span class="msg">${msg}</span>
+  <div class="msg">${msg}</div>
   <span class="time">${time}</span>`;
   li.innerHTML = dom;
   chattingList.appendChild(li);
@@ -108,7 +114,7 @@ socket.on("chatting", (data) => {
 // 입장시
 socket.on("join", (data) => {
   new Audio("sound/join.mp3").play();
-  addEntranceMsg(data.name, "입장");
+  addEntranceMsg(data.name, "join");
   currentLoginNum.textContent = data.userNum;
   currentUsers = data.userList;
 });
@@ -116,7 +122,7 @@ socket.on("join", (data) => {
 // 퇴장시
 socket.on("exit", (data) => {
   new Audio("sound/exit.mp3").play();
-  addEntranceMsg(data.name, "퇴장");
+  addEntranceMsg(data.name, "exit");
   currentLoginNum.textContent = data.userNum;
   currentUsers = data.userList;
 });

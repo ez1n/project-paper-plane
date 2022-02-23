@@ -18,12 +18,26 @@ html, body {
   overflow: hidden;
 }
 
+.chatting-space::-webkit-scrollbar {
+  width: 8px; /*스크롤바의 너비*/
+}
+
+.chatting-space::-webkit-scrollbar-thumb {
+  background-color: rgb(81, 45, 209); /*스크롤바의 색상*/
+  border-radius: 25px;
+}
+
+.chatting-space::-webkit-scrollbar-track {
+  background-color: rgb(147, 139, 214); /*스크롤바 트랙 색상*/
+}
+
 /**
 최상단 메뉴 바 설정
 */
 
 .menu-space {
-  background: rgb(157, 253, 170);
+  /* background: rgb(157, 253, 170); */
+  background: rgb(43, 107, 226);
   flex:1;
   display: flex;
   flex-direction: row;
@@ -41,27 +55,38 @@ html, body {
 }
 
 .current-login .current-user-list {
-  background: rgb(10, 189, 135);
+  /* background: rgb(10, 189, 135); */
+  background: rgb(85, 124, 197);
   border: none;
   border-radius: 3px;
 }
 
 .current-login .current-user-list:hover {
-  background: rgb(13, 223, 142);
+  /* background: rgb(13, 223, 142); */
+  background: rgb(22, 56, 119);
   cursor: pointer;
 }
 
 .user-list {
   position: absolute;
-  right: 3%;
+  right: 1%;
   width: max-content;
   height: max-content;
 }
 
-.user-list .participants {
+/* .user-list {
   height: 20px;
   font-size: 25px;
   text-align: right;
+} */
+
+.participants {
+  width: 100%;
+  height: 100%;
+  border: solid;
+  border-color: rgb(69, 59, 204);
+  border-radius: 25px;
+  background-color: rgb(179, 199, 238);
 }
 
 /**
@@ -69,7 +94,8 @@ html, body {
 */
 
 .chatting-space {
-  background: rgba(147, 245, 155, 0.507);
+  /* background: rgba(147, 245, 155, 0.507); */
+  background:rgb(161, 189, 243);
   flex:12;
   overflow-y:scroll;
   text-align: center;
@@ -85,18 +111,21 @@ html, body {
 
 
 input[type=button]:hover {
-  background: rgb(13, 223, 142);
+  /* background: rgb(13, 223, 142); */
+  background: rgb(22, 56, 119);
   cursor: pointer;
 }
 
 .change-name-btn {
-  background: rgb(10, 189, 135);
+  /* background: rgb(10, 189, 135); */
+  background: rgb(85, 124, 197);
   border: none;
   border-radius: 3px;
 }
 
 .change-name-btn:hover {
-  background: rgb(13, 223, 142);
+  /* background: rgb(13, 223, 142); */
+  background: rgb(22, 56, 119);
   cursor: pointer;
 }
 
@@ -127,14 +156,17 @@ input[type=button]:hover {
 .user {
   margin-bottom: 0.3rem;
   font-size: 24px;
+  border: solid;
+  border-color: azure;
+  border-radius: 25px;
+  background-color: aquamarine;
 }
 
 .msg {
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.35rem;
   margin-left:5px;
   margin-bottom: 0 5px;
-  flex: 7;
   font-size: 24px;
   text-align: justify;
 }
@@ -183,14 +215,16 @@ input[type=button]:hover {
   border: none;
   flex:8;
   margin-right: 5px;
-  background: rgb(209, 240, 232);
+  /* background: rgb(209, 240, 232); */
+  background: rgb(204, 214, 233);
   padding-left: 10px;
   outline: none;
 }
 
 .send-btn {
   flex:1;
-  background: rgb(10, 189, 135);
+  /* background: rgb(10, 189, 135); */
+  background: rgb(85, 124, 197);
   border: none;
   height: 100%;
   border-radius: 3px;
