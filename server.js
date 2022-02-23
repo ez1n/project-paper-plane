@@ -56,7 +56,7 @@ io.on("connection", (socket) => {
       name,
       photo,
       msg,
-      time: moment(new Date()).format("h:ss A")
+      time: moment(new Date()).format("h:mm A")
     });
   });
 
