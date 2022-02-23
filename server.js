@@ -40,6 +40,7 @@ app.use("/", router);
  */
 const io = require("socket.io")(server);
 const moment = require("moment");
+const today = moment();
 const userList = [];
 
 io.on("connection", (socket) => {
@@ -56,7 +57,7 @@ io.on("connection", (socket) => {
       name,
       photo,
       msg,
-      time: moment(new Date()).format("h:ss A")
+      time: today.format("hh:m A")
     });
   });
 

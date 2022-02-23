@@ -91,6 +91,7 @@ const addEntranceMsg = function (name, entrance) {
 // 서버로 부터 채팅 메시지 받기
 socket.on("chatting", (data) => {
   const { name, msg, photo, time } = data;
+  console.log(time)
   const li = document.createElement("li");
   li.classList.add(userName === name ? "sent": "received");
   const dom = `<span class="user">${name}</span>
