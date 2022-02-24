@@ -12,8 +12,8 @@ document.querySelector(".enter-form").addEventListener("keypress", (event) => {
   }
 })
 
-const url = "https://project-paper-plane.herokuapp.com/users";
-//const url = "http://localhost:5000/users"; // local 테스트용
+//const url = "https://project-paper-plane.herokuapp.com/users";
+const url = "http://localhost:5000/users"; // local 테스트용
 
 
 overlapCheckBtn.addEventListener("click", () => {
@@ -21,7 +21,7 @@ overlapCheckBtn.addEventListener("click", () => {
     const userList = res;
     const currentUserName = document.querySelector(".name-input").value;
     const currentRoomName = document.querySelector(".room-name-input").value;
-    console.log(currentUserName, currentRoomName)
+    console.log(currentUserName, currentRoomName);
     if (userList.includes(currentUserName)) {
       announce.textContent = `'${currentUserName}'을/를 사용하는 사용자가 현재 채팅방에 있습니다!`;
     } else if (currentUserName === "") {

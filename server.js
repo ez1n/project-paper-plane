@@ -27,10 +27,12 @@ router.get("/chat", (req, res) => {
     res.cookie("roomName", roomName);
     res.sendFile(__dirname + "/src/client.html");
   }
+  console.log(req.cookies);
 });
 
 router.get("/users", (req, res) => {
   res.json(userList);
+  res.json(roomList)
 })
 
 
@@ -69,7 +71,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log(`${socket.name} is exited chatting`);
-    userList.splice(userList.indexOf(socket.name),1);
+    userList.splice(userList.indexOf(socket.name), 1);
     io.to(socket.room).emit("exit", {name:socket.name, userList:userList, userNum:userList.length});
   });
 });
