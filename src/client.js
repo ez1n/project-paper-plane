@@ -1,8 +1,9 @@
 'use strict'
 const socket = io();
 
-// 서버로부터 유저 이름 받아오기
+// 서버로부터 유저 이름, 채팅방 이름 받아오기
 const userName = decodeURIComponent(((document.cookie).substring(9))); // 쿠키값 파싱
+const roomName = decodeURIComponent(((document.cookie).substring(9)));
 
 // DOM 가져오기
 const chattingList = document.querySelector(".chatting-list");
@@ -14,7 +15,8 @@ const currentLoginNum = document.querySelector(".current-login-num");
 const currentUserList = document.querySelector(".current-user-list");
 const userList = document.querySelector(".user-list");
 socket.emit("join", {
-  name: userName
+  name: userName,
+  room : roomName
 });
 msgInput.focus(); // 입장시 커서 놓기
 
@@ -69,6 +71,7 @@ sendBtn.addEventListener("click", () => {
 const send = function () {
   socket.emit("chatting", {
     name: userName,
+    room: roomName,
     photo: "profilePhoto",
     msg: msgInput.value
   });
@@ -97,7 +100,8 @@ const addEntranceMsg = function (name, entrance) {
 
 // 서버로 부터 채팅 메시지 받기
 socket.on("chatting", (data) => {
-  const { name, msg, photo, time } = data;
+  const { name, room, msg, photo, time } = data;
+  console.log(room);
   const li = document.createElement("li");
   li.classList.add(userName === name ? "sent": "received");
   const dom = `<span class="user">${name}</span>

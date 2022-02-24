@@ -41,18 +41,22 @@ app.use("/", router);
 const io = require("socket.io")(server);
 const moment = require("moment");
 const userList = [];
+const roomList = [];
 
 io.on("connection", (socket) => {
   socket.on("join", (data) => {
+    socket.join(data.room);
     socket.name = data.name; // 소켓에 유저 이름 저장
-    console.log(`${data.name} is entered chatting`);
+    socket.room = data.room;
+    console.log(`${data.name} is entered ${data.room} chatting room`);
     userList.push(socket.name);
-    io.emit("join", {name:data.name, userList:userList, userNum:userList.length});
+    roomList.push(socket.room);
+    io.to(data.room).emit("join", {name:data.name, userList:userList, userNum:userList.length, room: data.room, roomList:roomList});
   });
 
   socket.on("chatting", (data) => {
-    const { name, photo, msg } = data;
-    io.emit("chatting", {
+    const { name, room, photo, msg } = data;
+    io.to(room).emit("chatting", {
       name,
       photo,
       msg,
@@ -63,7 +67,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log(`${socket.name} is exited chatting`);
     userList.splice(userList.indexOf(socket.name),1);
-    io.emit("exit", {name:socket.name, userList:userList, userNum:userList.length});
+    io.to(socket.room).emit("exit", {name:socket.name, userList:userList, userNum:userList.length});
   });
 });
 
