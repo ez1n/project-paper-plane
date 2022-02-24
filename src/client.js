@@ -26,7 +26,7 @@ msgInput.focus(); // 입장시 커서 놓기
  */
 
 // 현재 접속중인 사람 이름 표시
-currentUserName.textContent = userName + "님";
+currentUserName.textContent = roomName + ":" + userName + "님";
 
 
 // 접속자 목록 표시

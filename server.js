@@ -19,10 +19,12 @@ app.use(express.static(path.join(__dirname, "src")));
 
 router.get("/chat", (req, res) => {
   const userName = req.query.name;
+  const roomName = req.query.room;
   if (typeof(userName) === "undefined") {
     res.redirect("/");
   } else {
     res.cookie("userName", userName);
+    res.cookie("roomName", roomName);
     res.sendFile(__dirname + "/src/client.html");
   }
 });
@@ -58,6 +60,7 @@ io.on("connection", (socket) => {
     const { name, room, photo, msg } = data;
     io.to(room).emit("chatting", {
       name,
+      room,
       photo,
       msg,
       time: moment(new Date()).format("h:mm A")
