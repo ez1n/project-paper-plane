@@ -12,13 +12,14 @@ document.querySelector(".enter-form").addEventListener("keypress", (event) => {
   }
 })
 
-//const url = "https://project-paper-plane.herokuapp.com/users";
-const url = "http://localhost:5000/users"; // local 테스트용
+const url = "https://project-paper-plane.herokuapp.com/users";
+//const url = "http://localhost:5000/names"; // local 테스트용
 
 
 overlapCheckBtn.addEventListener("click", () => {
   fetch(url).then(res => res.json()).then(res => {
-    const userList = res;
+    const userList = res.userList;
+    console.log(userList)
     const currentUserName = document.querySelector(".name-input").value;
     const currentRoomName = document.querySelector(".room-name-input").value;
     console.log(currentUserName, currentRoomName);

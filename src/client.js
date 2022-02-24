@@ -1,10 +1,16 @@
 'use strict'
 const socket = io();
 
-// 서버로부터 유저 이름, 채팅방 이름 받아오기\
-const cookies = (document.cookie).split("; ");
-const userName = decodeURIComponent((cookies[1]).substring(9)); // 쿠키값 파싱
-const roomName = decodeURIComponent((cookies[0]).substring(9));
+// 서버로부터 유저 이름, 채팅방 이름 받아오기
+const getCookie = function (name){
+  let value = document.cookie.match(`(^|;) ?${name}=([^;]*)(;|$)`);
+  return value ? value[2] : null;
+};
+
+const userName = decodeURIComponent(getCookie("userName"));
+const roomName = decodeURIComponent(getCookie("roomName"));
+
+
 
 // DOM 가져오기
 const chattingList = document.querySelector(".chatting-list");

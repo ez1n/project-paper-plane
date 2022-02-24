@@ -27,12 +27,10 @@ router.get("/chat", (req, res) => {
     res.cookie("roomName", roomName);
     res.sendFile(__dirname + "/src/client.html");
   }
-  console.log(req.cookies);
 });
 
-router.get("/users", (req, res) => {
-  res.json(userList);
-  res.json(roomList)
+router.get("/names", (req, res) => {
+  res.json(names);
 })
 
 
@@ -46,6 +44,10 @@ const io = require("socket.io")(server);
 const moment = require("moment");
 const userList = [];
 const roomList = [];
+const names = {
+  userList: userList,
+  roomList: roomList
+};
 
 io.on("connection", (socket) => {
   socket.on("join", (data) => {
