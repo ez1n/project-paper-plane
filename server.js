@@ -9,6 +9,21 @@ const PORT = process.env.PORT || 5000;
 const cookieParser = require("cookie-parser");
 server.listen(PORT, () => console.log(`server is running on port:${PORT}`));
 app.use(cookieParser());
+const cors = require("cors");
+
+
+const whitelist = ["https://project-paper-plane.herokuapp.com/names"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not Allowed Origin!"));
+    }
+  }
+}
+
+app.use(cors(corsOptions));
 
 
 /**
@@ -20,7 +35,7 @@ app.use(express.static(path.join(__dirname, "src")));
 router.get("/chat", (req, res) => {
   const userName = req.query.name;
   const roomName = req.query.room;
-  if (typeof(userName) === "undefined") {
+  if (typeof (userName) === "undefined") {
     res.redirect("/");
   } else {
     res.cookie("userName", userName);
@@ -57,7 +72,7 @@ io.on("connection", (socket) => {
     console.log(`${data.name} is entered ${data.room} chatting room`);
     userList.push(socket.name);
     roomList.push(socket.room);
-    io.to(data.room).emit("join", {name:data.name, userList:userList, userNum:userList.length, room: data.room, roomList:roomList});
+    io.to(data.room).emit("join", { name: data.name, userList: userList, userNum: userList.length, room: data.room, roomList: roomList });
   });
 
   socket.on("chatting", (data) => {
@@ -74,7 +89,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log(`${socket.name} is exited chatting`);
     userList.splice(userList.indexOf(socket.name), 1);
-    io.to(socket.room).emit("exit", {name:socket.name, userList:userList, userNum:userList.length});
+    io.to(socket.room).emit("exit", { name: socket.name, userList: userList, userNum: userList.length });
   });
 });
 
