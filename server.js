@@ -12,7 +12,9 @@ app.use(cookieParser());
 const cors = require("cors");
 
 
-const whitelist = ["https://project-paper-plane.herokuapp.com/names"];
+const whitelist = ["https://project-paper-plane.herokuapp.com/names",
+  "http://paperplane.center",
+  "http://paperplane.center/chat"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
