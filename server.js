@@ -9,24 +9,12 @@ const PORT = process.env.PORT || 5000;
 const cookieParser = require("cookie-parser");
 server.listen(PORT, () => console.log(`server is running on port:${PORT}`));
 app.use(cookieParser());
+
+
+// CORS 오류 해결
 const cors = require("cors");
 app.use(cors());
 
-
-// const whitelist = ["https://project-paper-plane.herokuapp.com/names",
-//   "http://paperplane.center",
-//   "http://paperplane.center/chat"];
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not Allowed Origin!"));
-//     }
-//   }
-// }
-
-//app.use(cors(corsOptions));
 
 
 /**
