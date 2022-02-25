@@ -1,11 +1,11 @@
 # 📨종이비행기✈️
 
 소박한 온라인 채팅 서비스<br>
-채팅하러 가기 👉 https://project-paper-plane.herokuapp.com/
+채팅하러 가기 👉 http://paperplane.center
 
 
 ```
-npm i express socket.io moment cookie-parser
+npm i express socket.io moment cookie-parser cors
 ```
 
 
