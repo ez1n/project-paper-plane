@@ -95,8 +95,8 @@ const addEntranceMsg = function (name, entrance) {
     dom = `${name} 님이 종이비행기를 타고 왔어요!
     매너채팅 부탁드려요 :)`;
   } else {
-    dom = `${name} 님이 종비비행기를 타고 다른곳으로 날아갔어요. 
-    다음에 또 만날 기회가 있을거에요 :)`;
+    dom = `${name} 님이 종이비행기를 타고 다른 곳으로 날아갔어요. 
+    다음에 또 만날 기회가 있을 거에요 :)`;
   }
   li.innerHTML = dom;
   chattingList.appendChild(li);
