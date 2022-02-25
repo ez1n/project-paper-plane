@@ -14,7 +14,7 @@ document.querySelector(".enter-form").addEventListener("keypress", (event) => {
 
 const url = "https://project-paper-plane.herokuapp.com/names";
 //const url = "http://localhost:5000/names"; // local 테스트용
-//const url = "http://paperplane.today/names";
+//const url = "http://paperplane.center/names";
 
 
 overlapCheckBtn.addEventListener("click", () => {
