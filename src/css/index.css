@@ -110,7 +110,7 @@ h1 {
   text-align: center;
 }
 
-.name-input:focus {
+.name-input:focus, .room-name-input:focus {
   outline:none;
 }
 

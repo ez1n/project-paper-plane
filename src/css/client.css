@@ -63,7 +63,7 @@ html, body {
 
 .current-login .current-user-list:hover {
   /* background: rgb(13, 223, 142); */
-  background: rgb(22, 56, 119);
+  background: rgb(113, 158, 243);
   cursor: pointer;
 }
 
@@ -111,7 +111,7 @@ html, body {
 
 input[type=button]:hover {
   /* background: rgb(13, 223, 142); */
-  background: rgb(22, 56, 119);
+  background: rgb(113, 158, 243);
   cursor: pointer;
 }
 
@@ -124,7 +124,7 @@ input[type=button]:hover {
 
 .change-name-btn:hover {
   /* background: rgb(13, 223, 142); */
-  background: rgb(22, 56, 119);
+  background: rgb(113, 158, 243);
   cursor: pointer;
 }
 
