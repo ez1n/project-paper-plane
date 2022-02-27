@@ -109,7 +109,6 @@ html, body {
   align-items: stretch;
 }
 
-
 input[type=button]:hover {
   /* background: rgb(13, 223, 142); */
   background: rgb(22, 56, 119);
@@ -137,7 +136,7 @@ input[type=button]:hover {
   margin-top: 0.5rem;
 }
 
-/* 프로필
+
 .profile {
   display: flex;
   flex-direction: column;
@@ -146,25 +145,22 @@ input[type=button]:hover {
 } 
 
 .profile .profile-img {
+  width: 45px; 
+  height: 45px;
   border-radius: 50%;
   object-fit: cover;
-  width: 50px;
-  height: 50px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
-*/
+
 
 .user {
-  margin-bottom: 0.3rem;
-  font-size: 24px;
-  border: solid;
-  border-color: azure;
-  border-radius: 25px;
-  background-color: aquamarine;
+  font-size: 20px;
 }
 
 .msg {
-  border-radius: 5px;
-  padding: 0.35rem;
+  border-radius: 20px;
+  padding: 0.15rem 0.4rem 0.15rem 0.4rem;
   margin-left:5px;
   margin-bottom: 0 5px;
   font-size: 24px;
@@ -192,9 +188,12 @@ input[type=button]:hover {
 .chatting-space .entrance-msg {
   display: inline-block;
   font-size: 20px;
+  color: white;
+  background-color: rgba(138, 155, 228, 0.712);
+  width: max-content;
+  border-radius: 20px;
+  line-height: 10px;
 }
-
-
 
 
 /**

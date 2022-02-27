@@ -89,6 +89,7 @@ const send = function () {
 
 const addEntranceMsg = function (name, entrance) {
   const li = document.createElement("li");
+  const div = document.createElement("div");
   li.classList.add("entrance-msg");
   let dom;
   if (entrance == "join") {
@@ -99,7 +100,8 @@ const addEntranceMsg = function (name, entrance) {
     다음에 또 만날 기회가 있을 거에요 :)`;
   }
   li.innerHTML = dom;
-  chattingList.appendChild(li);
+  div.appendChild(li);
+  chattingList.appendChild(div);
   chattingSpace.scrollTo(0, chattingSpace.scrollHeight);
 }
 
@@ -111,8 +113,8 @@ socket.on("chatting", (data) => {
   console.log(room);
   const li = document.createElement("li");
   li.classList.add(userName === name ? "sent": "received");
-  const dom = `<span class="user">${name}</span>
-  <!-- <img src="" alt="profile"> 프로필사진 -->
+  const dom = `<span class="profile"><span class="user">${name}</span>
+  <img class="profile-img" src="../img/profile.jpg" alt="profile"></span>
   <div class="msg">${msg}</div>
   <span class="time">${time}</span>`;
   li.innerHTML = dom;
