@@ -114,7 +114,7 @@ socket.on("chatting", (data) => {
   const li = document.createElement("li");
   li.classList.add(userName === name ? "sent": "received");
   const dom = `<span class="profile"><span class="user">${name}</span>
-  <img class="profile-img" src="../img/profile.jpg" alt="profile"></span>
+  <img class="profile-img" src="../img/profile.png" alt="profile"></span>
   <div class="msg">${msg}</div>
   <span class="time">${time}</span>`;
   li.innerHTML = dom;
